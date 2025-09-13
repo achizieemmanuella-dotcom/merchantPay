@@ -1,4 +1,3 @@
-
 # The Best Bootstrap Admin Template for Responsive Web Applications
 Bootstrap Simple Admin Template stands out as a versatile and feature-rich admin dashboard template, offering more UI components and advanced layout options than most alternatives. Its sleek, intuitive design is optimized for modern web development, ensuring seamless transitions across mobile and desktop screens.
 
@@ -59,3 +58,8 @@ Copyright (c) 2019-present, Pro Dev Ph
 =======
 # merchantPay
 >>>>>>> 569185f (Initial commit)
+=======
+# merchantPay
+this is the new edited dev file
+take note of the changes
+>>>>>>> 7b02d08 (Update README.md)
