@@ -10,12 +10,12 @@ jobs:
       - name: Docker Version
         run: docker --version
       - name: Maven Version
-        run: mvn version
+        run: mvn --version
         
-    pingApps:
+    OSVersions:
       runs-on: ubuntu-latest
       steps:
-      - name: pingGoogle
-        run: ping -c 4 google.com
-      - name: pingFacebook 
-        run: ping -c 4 facebook.com
+      - name: ubuntuVersion
+        run: hostnamectl
+      - name: getDiskUsage 
+        run: df -Th
