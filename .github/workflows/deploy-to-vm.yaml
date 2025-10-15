@@ -1,0 +1,14 @@
+name: deploy dashboard
+on: push
+
+jobs:
+
+ deploy:
+   runs-on: ubuntu latest
+
+   steps:
+   - name: CheckOut
+     uses: actions/checkout@v5.0.0
+
+   - name: Setup SSH
+   
