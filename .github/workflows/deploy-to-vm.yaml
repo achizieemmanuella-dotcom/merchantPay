@@ -2,25 +2,24 @@ name: deploy dashboard
 on: push
 
 jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
- deploy:
-   runs-on: ubuntu latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
 
-   steps:
-   - name: CheckOut
-     uses: actions/checkout@v5.0.0
+      - name: Setup SSH
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > key.pem
+          chmod 600 key.pem
 
-   - name: Setup SSH
-     run: |
-         echo "${{ secrets.SSH_KEY }}" > key.pem
-         chmod 600 key.pem
-
-   - name: Authenticate and Deploy To EC2
-     run: |
-       ssh -on StrictHostKeyChecking"no -i key.pem ${{ secrets.USERNAME}}@${{ secrets.HOST }} << 'EOF'
-          sudo yum intsall httpd git -y
-          sudo systemctl enable httpd
-          sudo systemctl restart httpd
-          sudo git clone https://github.com/achizieemmanuella-dotcom/merchantPay.git
-          sudo cp -r /home/${{ secrets.USERNAME}}/merchantPay/* /var/www/html
-        EOF
+      - name: Authenticate and Deploy To EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            sudo yum install httpd git -y
+            sudo systemctl enable httpd
+            sudo systemctl restart httpd
+            sudo rm -rf /var/www/html/*
+            sudo git clone https://github.com/achizieemmanuella-dotcom/merchantPay.git /var/www/html
+          EOF
