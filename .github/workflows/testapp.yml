@@ -1,7 +1,7 @@
 name: TestApps
 on:
     push:
-         branches:
+        branches:
          -dev
          
 # on: workflow_dispatch
