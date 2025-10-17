@@ -11,4 +11,16 @@ jobs:
      uses: actions/checkout@v5.0.0
 
    - name: Setup SSH
-   
+     run: |
+         echo "${{ secrets.SSH_KEY }}" > key.pem
+         chmod 600 key.pem
+
+   - name: Authenticate and Deploy To EC2
+     run: |
+       ssh -on StrictHostKeyChecking"no -i key.pem ${{ secrets.USERNAME}}@${{ secrets.HOST }} << 'EOF'
+          sudo yum intsall httpd git -y
+          sudo systemctl enable httpd
+          sudo systemctl restart httpd
+          sudo git clone https://github.com/achizieemmanuella-dotcom/merchantPay.git
+          sudo cp -r /home/${{ secrets.USERNAME}}/merchantPay/* /var/www/html
+        EOF
