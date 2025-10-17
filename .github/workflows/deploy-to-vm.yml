@@ -16,7 +16,7 @@ jobs:
 
       - name: Authenticate and Deploy To EC2
         run: |
-          ssh -o StrictHostKeyChecking*no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             sudo yum install httpd git -y
             sudo systemctl enable httpd
             sudo systemctl restart httpd
